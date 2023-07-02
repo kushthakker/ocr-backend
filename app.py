@@ -28,14 +28,6 @@ UPLOAD_DIR = "./"
 
 path_to_files = []
 
-for filename in os.listdir('./'):
-    path_to_files.append(os.path.join(UPLOAD_DIR, filename))
-
-path_to_files.sort()
-
-
-path_to_files = []
-
 for filename in os.listdir("./output/"):
     path_to_files.append(os.path.join("./output/", filename))
 
@@ -56,10 +48,12 @@ async def upload_file(file: UploadFile = File(...)):
         binary_contents = bytearray(contents)  # Convert array buffer to binary data
         f.write(binary_contents)
     print({"filename": file.filename, "message": "File uploaded successfully"})
+    extract_text_tesseract_single()
 
 def extract_text_tesseract_single():
     response = detect_text_from_page_tesseract_single_thread(path_to_files)
     return response
+
 
 @app.post("/tesseract_multi")
 def extract_text_tesseract_multi():
