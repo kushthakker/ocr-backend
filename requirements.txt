@@ -6,3 +6,4 @@ prettytable
 pytesseract
 pypdfium2
 tqdm
+pydantic
