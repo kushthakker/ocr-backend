@@ -18,7 +18,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './auth.json'
 vision_client = vision.ImageAnnotatorClient()
 
 
-def convert_to_images(pdf_path):
+async def convert_to_images(pdf_path):
     # Convert each page of the PDF to images
     pdf = pdfium.PdfDocument(pdf_path)
     n_pages = len(pdf)
@@ -33,7 +33,7 @@ def convert_to_images(pdf_path):
     loading_bar.close()
 
 
-def detect_text_from_page_google_vision(path_to_images):
+async def detect_text_from_page_google_vision(path_to_images):
     # Perform text detection using Google Vision API
     response_dictionary = {"pages": []}
     text_on_page = []
@@ -66,11 +66,11 @@ def detect_text_from_page_google_vision(path_to_images):
             "page_time": time_taken_per_page[i]
         }
         response_dictionary["pages"].append(dummy_dictionary)
-    response_dictionary["total_time"] = totaltime
+    response_dictionary["totaltime"] = totaltime
     return response_dictionary
 
 
-def detect_text_from_page_tesseract_single_thread(path_to_images):
+async def detect_text_from_page_tesseract_single_thread(path_to_images):
     #text detection using Tesseract OCR (single-threaded)
     loading_bar = tqdm(total=len(path_to_images), desc="Processing Images")
     response_dictionary = {"pages": []}
@@ -110,7 +110,7 @@ def detect_text_from_page_tesseract_single_thread(path_to_images):
     return response_dictionary
 
 
-def detect_text_from_page_tesseract_multi_thread(path_to_images):
+async def detect_text_from_page_tesseract_multi_thread(path_to_images):
     # Perform text detection using Tesseract OCR (multi-threaded)
     response_dictionary = {"pages": []}
     text_on_page = [None] * len(path_to_images)
