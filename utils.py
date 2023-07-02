@@ -130,10 +130,10 @@ def detect_text_from_page_tesseract_multi_thread(path_to_images):
     def process_page(pagenumber, image):
         starttime = time.time()
         results = pytesseract.image_to_data(image, output_type=Output.DICT)
+        endtime = time.time() - starttime
         response = ""
         for result in results["text"]:
             response = response + " " + result
-        endtime = time.time() - starttime
         text_on_page[pagenumber] = response
         time_taken_per_page[pagenumber] = endtime
 

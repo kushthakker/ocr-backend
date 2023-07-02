@@ -41,7 +41,7 @@ if option == "1":
         extract_text_tesseract_single()
     elif teserract_option == "2":
         def extract_text_tesseract_single():
-            # responsesingle = detect_text_from_page_tesseract_single_thread(path_to_files)
+            responsesingle = detect_text_from_page_tesseract_single_thread(path_to_files)
             responsemulti = detect_text_from_page_tesseract_multi_thread(path_to_files)
             # return responsesingle, responsemulti
         extract_text_tesseract_single()
@@ -50,21 +50,3 @@ elif option == "2":
         response = detect_text_from_page_google_vision(path_to_files)
         return response
     extract_text_gcp()
-        
-# async def extract_text_gcp():
-#     response = detect_text_from_page_google_vision(path_to_files)
-#     return response
-
-# @app.post("/tesseract_single")
-# async def extract_text_tesseract_single():
-#     response = detect_text_from_page_tesseract_single_thread(path_to_files)
-#     return response
-
-# @app.post("/tesseract_multi")
-# async def extract_text_tesseract_single():
-#     responsesingle = detect_text_from_page_tesseract_single_thread(path_to_files)
-#     responsemulti = detect_text_from_page_tesseract_multi_thread(path_to_files)
-#     return responsesingle, responsemulti
-
-
-    
