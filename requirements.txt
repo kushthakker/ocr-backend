@@ -1,0 +1,8 @@
+google-cloud-vision
+google-cloud-storage
+Pillow
+pypdfium2
+pytesseract
+opencv-python
+fastapi
+pydantic
