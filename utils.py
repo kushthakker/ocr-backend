@@ -96,7 +96,7 @@ def detect_text_from_page_tesseract_single_thread(path_to_images):
         text_on_page.append(response)
         time_taken_per_page.append(endtime - starttime)
         loading_bar.update(1)
-
+        
     totaltime = time.time() - total_time
 
     for i in range(0, len(text_on_page)):
@@ -116,7 +116,9 @@ def detect_text_from_page_tesseract_single_thread(path_to_images):
         table.add_row([just_time["page"], just_time["page_time"]])
 
     # Print the table with a box around it
+    print(f"---------------------Single-Thread times per page--------------------")
     print(table.get_string(border=True, padding_width=2))
+    print(f"---------------------------------------------------------------------")
     return response_dictionary
 
 
@@ -166,5 +168,20 @@ def detect_text_from_page_tesseract_multi_thread(path_to_images):
     table.add_row([len(text_on_page), totaltime])
 
     # Print the table with a box around it
+    print(f"---------------------Multi thread total time-------------------------")
     print(table.get_string(border=True, padding_width=2))
-    return response_dictionary
+    print(f"---------------------------------------------------------------------")
+
+    return totaltime
+
+def count_items_in_directory(directory_path):
+    total_items = 0
+
+    for item in os.listdir(directory_path):
+        item_path = os.path.join(directory_path, item)
+        if os.path.isdir(item_path):
+            total_items += 1  # Include directories in the count
+        elif os.path.isfile(item_path):
+            total_items += 1  # Include files in the count
+
+    return total_items
