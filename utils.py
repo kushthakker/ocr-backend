@@ -66,7 +66,6 @@ def detect_text_from_page_google_vision(path_to_images):
             "page_time": time_taken_per_page[i]
         }
         response_dictionary["pages"].append(dummy_dictionary)
-
     response_dictionary["total_time"] = totaltime
     return response_dictionary
 
@@ -105,20 +104,9 @@ def detect_text_from_page_tesseract_single_thread(path_to_images):
             "page_text": text_on_page[i],
             "page_time": time_taken_per_page[i]
         }
+        response_dictionary["totaltime"] = totaltime
         response_dictionary["pages"].append(dummy_dictionary)
-
     loading_bar.close()
-
-    table = PrettyTable()
-    for i in range(len(time_taken_per_page)):
-        just_time = {"page": i + 1, "page_time": time_taken_per_page[i]}
-        table.field_names = ["Page", "Page Time (sec)"]
-        table.add_row([just_time["page"], just_time["page_time"]])
-
-    # Print the table with a box around it
-    print(f"---------------------Single-Thread times per page--------------------")
-    print(table.get_string(border=True, padding_width=2))
-    print(f"---------------------------------------------------------------------")
     return response_dictionary
 
 
@@ -162,16 +150,8 @@ def detect_text_from_page_tesseract_multi_thread(path_to_images):
             "page_time": time_taken_per_page[i]
         }
         response_dictionary["pages"].append(dummy_dictionary)
+        response_dictionary["total_time"] = totaltime
     # creating table to print to console
-    table = PrettyTable()
-    table.field_names = ["Pages", "Total time (sec)"]
-    table.add_row([len(text_on_page), totaltime])
-
-    # Print the table with a box around it
-    print(f"---------------------Multi thread total time-------------------------")
-    print(table.get_string(border=True, padding_width=2))
-    print(f"---------------------------------------------------------------------")
-
     return totaltime
 
 def count_items_in_directory(directory_path):
