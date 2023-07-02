@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 
-# convert_to_images("./12100010_f1.pdf")
+convert_to_images("./12100010_f1.pdf")
 
 path_to_files = []
 
