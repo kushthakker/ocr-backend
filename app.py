@@ -36,7 +36,7 @@ if option == "1":
     elif teserract_option == "2":
         def extract_text_tesseract_single():
             responsesingle = detect_text_from_page_tesseract_single_thread(path_to_files)
-            responsemulti = detect_text_from_page_tesseract_multi_process(path_to_files)
+            responsemulti = detect_text_from_page_tesseract_multi_thread(path_to_files)
             table = PrettyTable()
             table.field_names = ["Type", "Total time (sec)"]
             print(f"---------------------difference------------------------------")
