@@ -2,7 +2,11 @@
 
 ## Video explanation
 
-<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/ac8fa94434cb4d81b6822e43d7f83bb4?sid=dd6d4454-4435-4e85-8d12-e1f36f5c4516" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+Task Summary and Surprise! 😄 - Watch Video
+
+![](https://cdn.loom.com/sessions/thumbnails/ac8fa94434cb4d81b6822e43d7f83bb4-with-play.gif)
+
+[Click Here](https://www.loom.com/share/ac8fa94434cb4d81b6822e43d7f83bb4)
 
 This repo consist of two branches:
 
