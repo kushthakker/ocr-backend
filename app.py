@@ -37,6 +37,8 @@ if not os.path.exists(folder_name):
     print(f"Folder '{folder_name}' created successfully.")
 else:
     print(f"Folder '{folder_name}' already exists.")
+    
+
 
 for filename in os.listdir("./output/"):
     path_to_files.append(os.path.join("./output/", filename))
