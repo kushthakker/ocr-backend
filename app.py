@@ -85,6 +85,9 @@ async def upload_file(file: UploadFile = File(...)):
         f.write(binary_contents)
     print({"filename": file.filename, "message": "File uploaded successfully"})
     await convert_to_images(file.filename)
+    for filename in os.listdir("./output/"):
+        path_to_files.append(os.path.join("./output/", filename))
+        path_to_files.sort()
     response = await extract_text_tesseract_multi()
     await wipe_folder("./output/")
     return response
