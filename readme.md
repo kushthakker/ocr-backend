@@ -294,3 +294,19 @@ sequenceDiagram
     vision_client-->>utils.py: response
     utils.py-->>app.py: response_dictionary
 ```
+
+## Output
+
+### Start Input
+
+![Start input](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/start.png?raw=true)
+
+### Single Thread
+![Single Thread output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/singlethread.png?raw=true)
+
+### Multi Thread
+
+![Multi Thread Output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/multithread.png?raw=true)
+
+### Google Vision
+![Google Vision Output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/googlevision.png?raw=true)
