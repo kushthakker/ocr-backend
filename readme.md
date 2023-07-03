@@ -285,7 +285,7 @@ sequenceDiagram
     utils.py-->>app.py: responsemulti
 ```
 
-### ### Sequence Diagram (Google Vision):
+### Sequence Diagram (Google Vision):
 
 ```mermaid
 sequenceDiagram
