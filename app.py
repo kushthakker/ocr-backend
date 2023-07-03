@@ -3,7 +3,12 @@ from utils import *
 from pydantic import BaseModel
 import json
 
-os.mkdir("output")
+output_dir = "output"
+if not os.path.exists(output_dir):
+    os.mkdir(output_dir)
+    print(f"Directory '{output_dir}' created.")
+else:
+    print(f"Directory '{output_dir}' already exists.")
 convert_to_images("./12100010_f1.pdf")
 
 path_to_files = []
@@ -31,7 +36,7 @@ if option == "1":
     elif teserract_option == "2":
         def extract_text_tesseract_single():
             responsesingle = detect_text_from_page_tesseract_single_thread(path_to_files)
-            responsemulti = detect_text_from_page_tesseract_multi_thread(path_to_files)
+            responsemulti = detect_text_from_page_tesseract_multi_process(path_to_files)
             table = PrettyTable()
             table.field_names = ["Type", "Total time (sec)"]
             print(f"---------------------difference------------------------------")
