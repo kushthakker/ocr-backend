@@ -88,6 +88,7 @@ async def detect_text_from_page_google_vision(path_to_images):
 
 async def detect_text_from_page_tesseract_single_thread(path_to_images):
     #text detection using Tesseract OCR (single-threaded)
+    print("Performing text detection using Tesseract OCR (single-threaded)...")
     loading_bar = tqdm(total=len(path_to_images), desc="Processing Images")
     response_dictionary = {"pages": []}
     text_on_page = []

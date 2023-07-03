@@ -65,7 +65,7 @@ async def upload_file(file: UploadFile = File(...)):
     return response
 
 async def extract_text_tesseract_single():
-    response = detect_text_from_page_tesseract_single_thread(path_to_files)
+    response = await detect_text_from_page_tesseract_single_thread(path_to_files)
     return response
 
 
