@@ -13,6 +13,7 @@ import pypdfium2 as pdfium
 
 # Set Google Cloud credentials
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_APPLICATION_CREDENTIALS
 
 # Initializing Google Vision API client
 vision_client = vision.ImageAnnotatorClient()
