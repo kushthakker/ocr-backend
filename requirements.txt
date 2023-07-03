@@ -4,7 +4,7 @@ opencv-python==4.5.3.56
 pillow==8.3.2
 prettytable==2.2.1
 pytesseract==0.3.8
-pypdfium2==0.2.1
+pypdfium2
 tqdm==4.62.1
 pydantic==1.8.2
 fastapi==0.68.1
