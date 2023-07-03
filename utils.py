@@ -60,7 +60,7 @@ async def detect_text_from_page_google_vision(path_to_images):
         loading_bar.update(1)
 
     totaltime = time.time() - total_time
-    
+    table = PrettyTable()
     for i in range(0, len(text_on_page)):
         dummy_dictionary = {
             "page": i + 1,
@@ -68,7 +68,7 @@ async def detect_text_from_page_google_vision(path_to_images):
             "page_time": time_taken_per_page[i]
         }
         response_dictionary["pages"].append(dummy_dictionary)
-        table = PrettyTable()
+       
         for i in range(len(time_taken_per_page)):
             just_time = {"page": i + 1, "page_time": time_taken_per_page[i]}
             table.field_names = ["Page", "Page Time (sec)"]
