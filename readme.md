@@ -161,7 +161,7 @@ Overall, the folder structure is designed to promote code modularity, ease of de
 2.  Switch to repo's directory `cd ocr-backend`
 3.  Start the docker on your system
 4.  `docker build -t ocr .`
-5.  `docker run -i -rm -p 4000:4000 --name container_ocr ocr`
+5.  `docker run -i --rm --name container_ocr ocr`
 6.  The application will start running and display the following message:
 
 ```

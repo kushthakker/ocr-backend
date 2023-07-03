@@ -3,7 +3,7 @@ from utils import *
 from pydantic import BaseModel
 import json
 
-
+os.mkdir("output")
 convert_to_images("./12100010_f1.pdf")
 
 path_to_files = []
