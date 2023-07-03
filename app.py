@@ -29,6 +29,12 @@ UPLOAD_DIR = "./"
 
 path_to_files = []
 
+output_dir = "output"
+if not os.path.exists(output_dir):
+    os.mkdir(output_dir)
+    print(f"Directory '{output_dir}' created.")
+else:
+    print(f"Directory '{output_dir}' already exists.")
 
 @app.post("/gcp_vision")
 async def upload_file(file: UploadFile = File(...)):
