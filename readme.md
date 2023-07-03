@@ -193,26 +193,42 @@ select type of task you want to run:
 
 ## Manual
 
+  
+
 To run the application and execute the desired tasks, follow these steps:
 
-1.  Create a new Python virtual environment using the `venv` module:
+1. Clone the repo using following command :
 
+`git clone -b local https://github.com/kushthakker/ocr-backend.git`
 
-    `python -m venv myenv`
+2. Switch to repo's directory `cd ocr-backend`
 
-2.  Activate the virtual environment:
+3.  Create a new Python virtual environment using the `venv` module:
+    
+    
+    `python -m venv myenv` 
+    
+    
+4.  Activate the virtual environment:
+    
+    -   For Windows:
+        
 
-    - For Windows:
-
-      `myenv\Scripts\activate`
-
-    - For Unix/Linux/Mac:
-
-      `source myenv/bin/activate`
-
+        
+        `myenv\Scripts\activate` 
+        
+    -   For Unix/Linux/Mac:
+     
+        
+        `source myenv/bin/activate` 
+        
+    
     Once the virtual environment is activated, you'll notice that the command prompt changes to indicate the active environment.
+    
 
-3.  Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
+5. Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
+
+  
 
 ```
 
@@ -220,9 +236,15 @@ pip install -r requirements.txt
 
 ```
 
-4. Open the terminal and navigate to the project directory.
+  
 
-5. Execute the following command to run the application:
+6. Open the terminal and navigate to the project directory.
+
+  
+
+7. Execute the following command to run the application:
+
+  
 
 ```
 
@@ -230,7 +252,11 @@ python app.py
 
 ```
 
-6. The application will start running and display the following message:
+  
+
+8. The application will start running and display the following message:
+
+  
 
 ```
 
@@ -242,13 +268,21 @@ select type of task you want to run:
 
 ```
 
-7. Enter `1` or `2` based on the task you want to perform:
+  
+
+9. Enter `1` or `2` based on the task you want to perform:
+
+  
 
 - Enter `1` for local Tesseract OCR.
 
 - Enter `2` for Google Vision API.
 
-8. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
+  
+
+10. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
+
+  
 
 ```
 
@@ -258,17 +292,29 @@ select type of task you want to run:
 
 ```
 
-9. Enter `1` or `2` based on the sub-task you want to perform:
+  
+
+11. Enter `1` or `2` based on the sub-task you want to perform:
+
+  
 
 - Enter `1` for single-threaded text extraction.
 
 - Enter `2` for single-threaded + multi-threaded comparison.
 
-10. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
+  
 
-11. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
+12. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
 
-12. Review the output and analyze the results based on your requirements.
+  
+
+13. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
+
+  
+
+14. Review the output and analyze the results based on your requirements.
+
+  
 
 By following these steps, you can easily run the application, select the desired task(s), and process your PDF files using Tesseract OCR or the Google Vision API. Make sure to provide the correct input and carefully review the output to gain valuable insights from the text extraction process.
 
