@@ -29,21 +29,11 @@ UPLOAD_DIR = "./"
 
 path_to_files = []
 
-folder_name = "output"
-
-# Create the folder if it doesn't exist
-if not os.path.exists(folder_name):
-    os.makedirs(folder_name)
-    print(f"Folder '{folder_name}' created successfully.")
-else:
-    print(f"Folder '{folder_name}' already exists.")
-    
-
-
 for filename in os.listdir("./output/"):
     path_to_files.append(os.path.join("./output/", filename))
 
 path_to_files.sort()
+
 
 @app.post("/gcp_vision")
 async def upload_file(file: UploadFile = File(...)):
@@ -57,6 +47,7 @@ async def upload_file(file: UploadFile = File(...)):
     print({"filename": file.filename, "message": "File uploaded successfully"})
     await convert_to_images(file.filename)
     response =  await extract_text_gcp()
+    await wipe_folder("./output/")
     return response
 async def extract_text_gcp():
     response = await detect_text_from_page_google_vision(path_to_files)
@@ -74,6 +65,7 @@ async def upload_file(file: UploadFile = File(...)):
     print({"filename": file.filename, "message": "File uploaded successfully"})
     await convert_to_images(file.filename)
     response =  await extract_text_tesseract_single()
+    await wipe_folder("./output/")
     return response
 
 async def extract_text_tesseract_single():
@@ -93,6 +85,7 @@ async def upload_file(file: UploadFile = File(...)):
     print({"filename": file.filename, "message": "File uploaded successfully"})
     await convert_to_images(file.filename)
     response = await extract_text_tesseract_multi()
+    await wipe_folder("./output/")
     return response
 
 async def extract_text_tesseract_multi():

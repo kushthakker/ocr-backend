@@ -23,13 +23,12 @@ async def convert_to_images(pdf_path):
     pdf = pdfium.PdfDocument(pdf_path)
     n_pages = len(pdf)
     loading_bar = tqdm(total=n_pages, desc="Generating images from PDF")
-   
+
     for i in range(len(pdf)):
         filename = str(i) + ".png"
         page = pdf.get_page(i)
-        output_dir = os.path.abspath("output")
         pil_image = page.render(scale=300/72).to_pil()
-        pil_image.save(os.path.join(output_dir, filename))
+        pil_image.save(f"./output/{filename}")
         loading_bar.update(1)
     loading_bar.close()
 
@@ -194,3 +193,9 @@ async def detect_text_from_page_tesseract_multi_thread(path_to_images):
     print(table.get_string(border=True, padding_width=2))
     print(f"-------------------------------------------------------------\n")
     return totaltime
+
+async def wipe_folder(folder_path):
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
