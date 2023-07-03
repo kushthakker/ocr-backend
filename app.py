@@ -9,7 +9,7 @@ origins = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://localhost:8080",
-    "https://ocr-backend-nqb2.onrender.com"
+    "https://ocr-frontend-im1l.onrender.com"
     # Add more allowed origins as needed
 ]
 
