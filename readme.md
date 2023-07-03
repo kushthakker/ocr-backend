@@ -195,50 +195,80 @@ select type of task you want to run:
 
 To run the application and execute the desired tasks, follow these steps:
 
-1. Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
+1.  Create a new Python virtual environment using the `venv` module:
 
-   ```
-   pip install -r requirements.txt
-   ```
 
-2. Open the terminal and navigate to the project directory.
+    `python -m venv myenv`
 
-3. Execute the following command to run the application:
+2.  Activate the virtual environment:
 
-   ```
-   python app.py
-   ```
+    - For Windows:
 
-4. The application will start running and display the following message:
+      `myenv\Scripts\activate`
 
-   ```
-   select type of task you want to run:
-    1) Local Tesseract
-    2) Google Vision
-   ```
+    - For Unix/Linux/Mac:
 
-5. Enter `1` or `2` based on the task you want to perform:
+      `source myenv/bin/activate`
 
-   - Enter `1` for local Tesseract OCR.
-   - Enter `2` for Google Vision API.
+    Once the virtual environment is activated, you'll notice that the command prompt changes to indicate the active environment.
 
-6. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
+3.  Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
 
-   ```
-   1) Single Thread
-   2) Single Thread + Multithread (Compare)
-   ```
+```
 
-7. Enter `1` or `2` based on the sub-task you want to perform:
+pip install -r requirements.txt
 
-   - Enter `1` for single-threaded text extraction.
-   - Enter `2` for single-threaded + multi-threaded comparison.
+```
 
-8. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
+4. Open the terminal and navigate to the project directory.
 
-9. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
+5. Execute the following command to run the application:
 
-10. Review the output and analyze the results based on your requirements.
+```
+
+python app.py
+
+```
+
+6. The application will start running and display the following message:
+
+```
+
+select type of task you want to run:
+
+1) Local Tesseract
+
+2) Google Vision
+
+```
+
+7. Enter `1` or `2` based on the task you want to perform:
+
+- Enter `1` for local Tesseract OCR.
+
+- Enter `2` for Google Vision API.
+
+8. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
+
+```
+
+1) Single Thread
+
+2) Single Thread + Multithread (Compare)
+
+```
+
+9. Enter `1` or `2` based on the sub-task you want to perform:
+
+- Enter `1` for single-threaded text extraction.
+
+- Enter `2` for single-threaded + multi-threaded comparison.
+
+10. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
+
+11. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
+
+12. Review the output and analyze the results based on your requirements.
 
 By following these steps, you can easily run the application, select the desired task(s), and process your PDF files using Tesseract OCR or the Google Vision API. Make sure to provide the correct input and carefully review the output to gain valuable insights from the text extraction process.
 
@@ -302,6 +332,7 @@ sequenceDiagram
 ![Start input](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/start.png?raw=true)
 
 ### Single Thread
+
 ![Single Thread output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/singlethread.png?raw=true)
 
 ### Multi Thread
@@ -309,7 +340,9 @@ sequenceDiagram
 ![Multi Thread Output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/multithread.png?raw=true)
 
 ### Google Vision
+
 ![Google Vision Output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/googlevision.png?raw=true)
 
 ### Frontend
+
 ![Front-end Console](https://github.com/kushthakker/ocr-backend/blob/4c755dae3cc1248f8f61f15427e2350c8add62d2/readme_images/frontend.jpeg?raw=true)
