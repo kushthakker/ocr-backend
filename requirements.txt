@@ -1,8 +1,10 @@
 google-cloud-vision
 google-cloud-storage
-Pillow
-pypdfium2
-pytesseract
 opencv-python
-fastapi
+pillow
+prettytable
+pytesseract
+pypdfium2
+tqdm
 pydantic
+fastapi
