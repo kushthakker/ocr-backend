@@ -34,6 +34,7 @@ path_to_files = []
 async def upload_file(file: UploadFile = File(...)):
     # Save the uploaded file to the upload directory
     print(file, "file")
+    global path_to_files
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as f:
         contents = await file.read()
@@ -45,7 +46,8 @@ async def upload_file(file: UploadFile = File(...)):
         path_to_files.append(os.path.join("./output/", filename))
         path_to_files.sort()
     response =  await extract_text_gcp()
-    await wipe_folder("./output/")
+    await wipe_folder("./output/", file.filename)
+    path_to_files = []
     return response
 async def extract_text_gcp():
     response = await detect_text_from_page_google_vision(path_to_files)
@@ -55,6 +57,7 @@ async def extract_text_gcp():
 async def upload_file(file: UploadFile = File(...)):
     # Save the uploaded file to the upload directory
     print(file, "file")
+    global path_to_files
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as f:
         contents = await file.read()
@@ -65,8 +68,10 @@ async def upload_file(file: UploadFile = File(...)):
     for filename in os.listdir("./output/"):
         path_to_files.append(os.path.join("./output/", filename))
         path_to_files.sort()
+   
     response =  await extract_text_tesseract_single()
-    await wipe_folder("./output/")
+    await wipe_folder("./output/", file.filename)
+    path_to_files = []
     return response
 
 async def extract_text_tesseract_single():
@@ -78,6 +83,7 @@ async def extract_text_tesseract_single():
 async def upload_file(file: UploadFile = File(...)):
     # Save the uploaded file to the upload directory
     print(file, "file")
+    global path_to_files
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as f:
         contents = await file.read()
@@ -89,7 +95,8 @@ async def upload_file(file: UploadFile = File(...)):
         path_to_files.append(os.path.join("./output/", filename))
         path_to_files.sort()
     response = await extract_text_tesseract_multi()
-    await wipe_folder("./output/")
+    await wipe_folder("./output/", file.filename)
+    path_to_files = []
     return response
 
 async def extract_text_tesseract_multi():
