@@ -8,3 +8,4 @@ pypdfium2
 tqdm
 pydantic
 fastapi
+uvicorn
