@@ -5,10 +5,9 @@ This repo consist of two branches:
  - Production
  - Local
 
-Production contains the code which is hosted on EC2 with a frontend. You can upload any PDF on that dashboard and select any of the two options and upload the pdf to receive time taken by each page to extract text from that pdf :
+  
+Production contains the code that is hosted on EC2 with a frontend, while the local branch contains the Dockerized code that can be spun up in a container using just a few steps shown in "steps to follow" below.
 
- - Teserract
- - Google Vision
 
 # Folder structure
 
@@ -46,18 +45,179 @@ Overall, the folder structure is designed to promote code modularity, ease of de
 
 # Steps to follow
 
-### Deployed 
+## Deployed 
 
-[Click here](https://test.com)
+[Click here](https://ocr-frontend-im1l.onrender.com)
 
-### Docker
 
- 1. ``git clone``
- 2. ``cd`` 
+## Responses
+
+ - ### Route: `/gcp_vision`
+
+	**Description:** This route is used to upload a PDF file, convert each page of the PDF to images, and then extract text from these images using Google Cloud Vision API.
+
+	**Method:** POST
+
+	**Parameters:**
+
+	-   `file` (UploadFile): The PDF file to be uploaded.
+
+	**Response Model:**
+
+	-   `pages` (list): A list of dictionaries, each containing the page number and the extracted text from that page.
+	-   `total_time` (float): The total time taken for text extraction from all pages.
+
+	**Example Request:**
+
+	    POST /gcp_vision
+	    Content-Type: multipart/form-data
+	    
+	    file=<path_to_pdf_file>
+
+
+	**Example Response:**
+
+	    {
+	        "pages": [
+	            {
+	                "page_number": 1,
+	                "text": "Text from page 1..."
+	            },
+	            {
+	                "page_number": 2,
+	                "text": "Text from page 2..."
+	            },
+	            ...
+	        ],
+	        "total_time": 2.345
+	    }
+
+- ### Route: `/tesseract_single`
+
+	**Description:** This route is used to upload a PDF file, convert each page of the PDF to images, and then extract text from these images using Tesseract OCR in a single thread.
+
+	**Method:** POST
+
+	**Parameters:**
+
+	-   `file` (UploadFile): The PDF file to be uploaded.
+
+	**Response Model:**
+
+	-   `pages` (list): A list of dictionaries, each containing the page number and the extracted text from that page.
+
+	**Example Request:**
+
+	    POST /tesseract_single
+	    Content-Type: multipart/form-data
+	    
+	    file=<path_to_pdf_file>
+
+	**Example Response:**
+
+	    {
+	        "pages": [
+	            {
+	                "page_number": 1,
+	                "text": "Text from page 1..."
+	            },
+	            {
+	                "page_number": 2,
+	                "text": "Text from page 2..."
+	            },
+	            ...
+	        ]
+	    }
+
+- ### Route: `/tesseract_multi`
+
+	**Description:** This route is used to upload a PDF file, convert each page of the PDF to images, and then extract text from these images using Tesseract OCR in multiple threads for parallel processing.
+
+	**Method:** POST
+
+	**Parameters:**
+
+	-   `file` (UploadFile): The PDF file to be uploaded.
+
+	**Response Model:**
+
+	-   `single_thread_time` (float): The time taken for text extraction using Tesseract in a single thread.
+	-   `multi_thread_time` (float): The time taken for text extraction using Tesseract in multiple threads.
+	-   `page_text` (list): A list of extracted texts from each page.
+
+	**Example Request:**
+
+	    POST /tesseract_multi
+	    Content-Type: multipart/form-data
+	    
+	    file=<path_to_pdf_file>`
+
+	**Example Response:**
+
+	    {
+	        "single_thread_time": 5.678,
+	        "multi_thread_time": 3.123,
+	        "page_text": [
+	            "Text from page 1...",
+	            "Text from page 2...",
+	            ...
+	        ]
+	    }
+
+
+## Docker
+
+ 1. Clone the repo using following command :
+ ``git clone -b local https://github.com/kushthakker/ocr-backend.git``
+ 2. Switch to repo's directory  ``cd ocr-backend`` 
  3. Start the docker on your system
  4. ``docker build -t ocr .``
  5.  ``docker run -i -rm -p 4000:4000 --name container_ocr ocr``
  6. The application will start running and display the following message:
+
+   ```
+   select type of task you want to run:
+    1) Local Tesseract
+    2) Google Vision
+   ```
+
+7. Enter `1` or `2` based on the task you want to perform:
+   - Enter `1` for local Tesseract OCR.
+   - Enter `2` for Google Vision API.
+
+8. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
+
+   ```
+   1) Single Thread
+   2) Single Thread + Multithread (Compare)
+   ```
+
+9. Enter `1` or `2` based on the sub-task you want to perform:
+   - Enter `1` for single-threaded text extraction.
+   - Enter `2` for single-threaded + multi-threaded comparison.
+
+10. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
+
+11. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
+
+## Manual
+To run the application and execute the desired tasks, follow these steps:
+
+1. Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Open the terminal and navigate to the project directory.
+
+3. Execute the following command to run the application:
+
+   ```
+   python app.py
+   ```
+
+4. The application will start running and display the following message:
 
    ```
    select type of task you want to run:
@@ -84,53 +244,7 @@ Overall, the folder structure is designed to promote code modularity, ease of de
 
 9. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
 
-### Manual
-To run the application and execute the desired tasks, follow these steps:
-
-1. Ensure that you have all the necessary dependencies installed. You can install them by running the following command in the terminal:
-
-   ```
-   pip install -r requirements.txt
-   ```
-
-2. Place the PDF file(s) that you want to process in the appropriate location.
-
-3. Open the terminal and navigate to the project directory.
-
-4. Execute the following command to run the application:
-
-   ```
-   python app.py
-   ```
-
-5. The application will start running and display the following message:
-
-   ```
-   select type of task you want to run:
-    1) Local Tesseract
-    2) Google Vision
-   ```
-
-6. Enter `1` or `2` based on the task you want to perform:
-   - Enter `1` for local Tesseract OCR.
-   - Enter `2` for Google Vision API.
-
-7. If you selected the local Tesseract OCR option (`1`), the application will present the following message:
-
-   ```
-   1) Single Thread
-   2) Single Thread + Multithread (Compare)
-   ```
-
-8. Enter `1` or `2` based on the sub-task you want to perform:
-   - Enter `1` for single-threaded text extraction.
-   - Enter `2` for single-threaded + multi-threaded comparison.
-
-9. The application will start executing the selected task(s) on the PDF file(s) in the `output/` folder.
-
-10. Depending on the selected task(s), the application will display the results in the console. These results may include extracted text, processing times, and comparison tables.
-
-11. Review the output and analyze the results based on your requirements.
+10. Review the output and analyze the results based on your requirements.
 
 By following these steps, you can easily run the application, select the desired task(s), and process your PDF files using Tesseract OCR or the Google Vision API. Make sure to provide the correct input and carefully review the output to gain valuable insights from the text extraction process.
 
