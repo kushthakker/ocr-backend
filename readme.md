@@ -310,3 +310,6 @@ sequenceDiagram
 
 ### Google Vision
 ![Google Vision Output](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/googlevision.png?raw=true)
+
+### Frontend
+![Front-end Console](https://github.com/kushthakker/ocr-backend/blob/cfca794061bef0c0e5bcf0e307f56e7f314041c6/readme_images/frontend.jpeg?raw=true)
