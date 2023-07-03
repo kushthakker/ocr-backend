@@ -12,7 +12,7 @@ from google.cloud import storage
 import pypdfium2 as pdfium
 
 # Set Google Cloud credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './auth.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']
 
 # Initializing Google Vision API client
 vision_client = vision.ImageAnnotatorClient()
