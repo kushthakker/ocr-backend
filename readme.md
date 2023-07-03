@@ -1,5 +1,13 @@
 # OCR using Teserract and Google Vision
 
+Task Summary and Surprise! 😄 - Watch Video
+
+![](https://cdn.loom.com/sessions/thumbnails/ac8fa94434cb4d81b6822e43d7f83bb4-with-play.gif)
+
+## [Click Here to Watch](https://www.loom.com/share/ac8fa94434cb4d81b6822e43d7f83bb4)
+
+
+
 This repo consist of two branches:
 
 - Production
