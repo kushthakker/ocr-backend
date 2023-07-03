@@ -1,7 +1,7 @@
 import os
 from utils import *
 from pydantic import BaseModel
-
+import json
 
 
 convert_to_images("./12100010_f1.pdf")
@@ -21,6 +21,12 @@ if option == "1":
         print(f"Starting {teserract_option}")
         def extract_text_tesseract_single():
             response = detect_text_from_page_tesseract_single_thread(path_to_files)
+            json_data = json.dumps(response)
+            file_path = "./output_json.json"
+            with open(file_path, "w") as file:
+                file.write(json_data)
+            print("JSON file created successfully.")
+            return response
         extract_text_tesseract_single()
     elif teserract_option == "2":
         def extract_text_tesseract_single():
@@ -35,9 +41,30 @@ if option == "1":
         # Print the table with a box around it
             print(table.get_string(border=True, padding_width=2))
             print(f"-------------------------------------------------------------")
+            page_text = []
+            for p in responsesingle["pages"]:
+                page_text.append(p['page_text'])
+
+            response = {
+                "single_thread_time": responsesingle["total_time"],
+                "multi_thread_time": responsemulti,
+                "page_text": page_text
+            }
+         
+            json_data = json.dumps(response)
+            file_path = "./output_json.json"
+            with open(file_path, "w") as file:
+                file.write(json_data)
+            print("JSON file created successfully.")
+            return response
         extract_text_tesseract_single()
 elif option == "2":
     def extract_text_gcp():
         response = detect_text_from_page_google_vision(path_to_files)
+        json_data = json.dumps(response)
+        file_path = "./output_json.json"
+        with open(file_path, "w") as file:
+         file.write(json_data)
+        print("JSON file created successfully.")
         return response
     extract_text_gcp()
